@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -28,15 +27,11 @@ const Index = () => {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-[16/9] overflow-hidden rounded-lg bg-muted/30 shadow-xl animate-pulse-glow">
+              <div className="aspect-[1/1] overflow-hidden rounded-lg bg-muted/30 shadow-xl">
                 <img 
-                  src="/cars/challenger.png" 
-                  alt="Featured Car" 
-                  className="h-full w-full object-cover"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.src = '/placeholder.svg';
-                  }}
+                  src="/lovable-uploads/191086ee-2231-41a9-99da-1d349f133293.png" 
+                  alt="DragBuild Racing Car" 
+                  className="h-full w-full object-cover transform hover:scale-105 transition-transform duration-300"
                 />
               </div>
             </div>
