@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,14 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Racing themed colors
+				racing: {
+					dark: '#1A1F2C',
+					red: '#FF3A5E',
+					blue: '#3A8DFF',
+					yellow: '#FFD23A',
+					gray: '#8E9196'
 				}
 			},
 			borderRadius: {
@@ -84,11 +93,51 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-glow': {
+					'0%, 100%': {
+						opacity: '1',
+						boxShadow: '0 0 10px rgba(255, 58, 94, 0.7)'
+					},
+					'50%': {
+						opacity: '0.8',
+						boxShadow: '0 0 20px rgba(255, 58, 94, 0.9)'
+					}
+				},
+				'slide-in': {
+					'0%': {
+						transform: 'translateY(20px)',
+						opacity: '0'
+					},
+					'100%': {
+						transform: 'translateY(0)',
+						opacity: '1'
+					}
+				},
+				'rev-meter': {
+					'0%': {
+						transform: 'rotate(-90deg)'
+					},
+					'25%': {
+						transform: 'rotate(-20deg)'
+					},
+					'50%': {
+						transform: 'rotate(0deg)'
+					},
+					'75%': {
+						transform: 'rotate(30deg)'
+					},
+					'100%': {
+						transform: 'rotate(90deg)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-glow': 'pulse-glow 2s infinite',
+				'slide-in': 'slide-in 0.5s ease-out',
+				'rev-meter': 'rev-meter 2s ease-in-out'
 			}
 		}
 	},
