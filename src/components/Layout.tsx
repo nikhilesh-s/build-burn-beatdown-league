@@ -14,8 +14,9 @@ const Layout = ({ children }: LayoutProps) => {
       <Header />
       <main className="flex-1">{children}</main>
       <footer className="border-t border-border bg-card py-6">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p>© 2025 DragBuild. All rights reserved.</p>
+        <div className="container mx-auto px-4 text-center space-y-2">
+          <p className="text-sm text-primary font-medium">Powered by Tri-Valley Tech</p>
+          <p className="text-xs text-muted-foreground">TVT Dev Vault Projects 2025 Nikhilesh Suravarjjala</p>
         </div>
       </footer>
       <Toaster />
