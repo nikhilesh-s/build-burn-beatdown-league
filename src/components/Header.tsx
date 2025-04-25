@@ -1,12 +1,23 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useGarage } from '../context/GarageContext';
+import { useAuth } from '../context/AuthContext';
 import { Button } from '@/components/ui/button';
-import { Car, Flag } from 'lucide-react';
+import { Car, Flag, LogOut } from 'lucide-react';
+import AuthDialog from './Auth/AuthDialog';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const Header = () => {
-  const { user } = useGarage();
+  const { user, profile, signOut } = useAuth();
+  const [authDialogOpen, setAuthDialogOpen] = useState(false);
 
   return (
     <header className="border-b border-border bg-card shadow-sm">
@@ -47,29 +58,37 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center space-x-4">
-          {user && (
-            <div className="flex items-center space-x-2">
-              <span className="hidden sm:inline-block">
-                {user.username}
-              </span>
-              <div className="h-8 w-8 rounded-full bg-secondary overflow-hidden">
-                <img 
-                  src={user.avatar} 
-                  alt="Avatar" 
-                  className="h-full w-full object-cover"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.src = 'https://ui-avatars.com/api/?name=' + user.username;
-                  }}
-                />
-              </div>
-            </div>
+          {profile ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src={profile.avatar} alt={profile.username} />
+                    <AvatarFallback>{profile.username.slice(0, 2).toUpperCase()}</AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>{profile.username}</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={signOut}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Sign Out</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Button 
+              variant="secondary" 
+              size="sm" 
+              onClick={() => setAuthDialogOpen(true)}
+            >
+              Sign In
+            </Button>
           )}
-          <Button variant="secondary" size="sm">
-            Sign In
-          </Button>
         </div>
       </div>
+      <AuthDialog open={authDialogOpen} onOpenChange={setAuthDialogOpen} />
     </header>
   );
 };
