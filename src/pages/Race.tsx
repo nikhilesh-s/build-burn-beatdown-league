@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
@@ -10,7 +9,7 @@ import { toast } from '@/components/ui/use-toast';
 import { useGarage } from '../context/GarageContext';
 import { getCarModel } from '../utils/statCalculations';
 import { RaceDistance, RaceResult, TrackCondition } from '../types';
-import { Stopwatch } from 'lucide-react';
+import { Clock } from 'lucide-react';  // Replace Stopwatch with Clock
 
 // Mock AI opponents
 const opponents = [
@@ -235,7 +234,7 @@ const Race = () => {
               Back to Garage
             </Button>
             <Button onClick={startRace} disabled={raceInProgress}>
-              <Stopwatch className="mr-2 h-4 w-4" />
+              <Clock className="mr-2 h-4 w-4" />  {/* Replace Stopwatch with Clock */}
               Start Race
             </Button>
           </div>
